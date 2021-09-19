@@ -25,7 +25,6 @@
   * id에 admin이 포함되면 ROLE_ADMIN과 ROLE_USER 권한을 모두 부여하고, 포함되지 않으면 ROLE_USER 권한만 부여
   * 권한이 ROLE_ADMIN인 사용자는 모든 게시 글과 댓글을 수정, 삭제가 가능
   * 권한이 ROLE_USER인 사용자는 자신이 쓴 게시 글과 댓글만 수정, 삭제가 가능
-  
   ~~~
   한 사용자에게 여러 권한을 부여할 수 있는 1:N 관계 형성
   <resultMap id="memberMap" type="com.choi.board.security.model.CustomUserDetails">
@@ -106,6 +105,42 @@
 **3. 댓글 작성 / 수정 / 삭제**
 * [REST 활용(ReplyController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/ReplyController.java?ts=4)
 * [모듈 패턴과 Ajax를 활용한 댓글 처리(reply.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/reply.js?ts=4)
+~~~
+var replyService = (function() {
+    // 댓글 출력
+    function getReplyList(param, callback, error) {
+        var bno = param.bno;
+        var page = param.page || 1;
+        
+        $.getJSON("/replies/" + bno + "/" + page + ".json", function(data) {
+            if(callback) callback(data.replyCount, data.replyList);
+        }).fail(function(xhr, status, err) {
+            if(error) error(err);
+        });
+    }
+    
+    // 댓글 작성
+    function register(reply, callback, error) {
+        $.ajax({
+            type: "post",
+            url: "/replies/new",
+            data: JSON.stringify(reply),
+            contentType: "application/json; charset=utf-8",
+            success: function(result, status, xhr) {
+                if(callback) callback(result); 
+            },
+            error: function(xhr, status, err) {
+                if(error) error(err);
+            }
+        });
+    }
+    
+    return {
+        getReplyList : getReplyList,
+        register : register, 
+    };
+})();
+~~~
 * 댓글 더 보기를 활용한 페이징 처리
   * 댓글의 개수가 한 페이지에 5개가 되면 더 보기 버튼을 출력
   * 댓글의 개수가 한 페이지에 5개 미만이거나 댓글의 현재 페이지가 마지막 페이지가 되면 더 보기 버튼을 제거  
