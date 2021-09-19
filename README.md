@@ -81,6 +81,27 @@
   * 댓글 작성 시 전체 댓글 수가 증가되지 않을 경우 에러 발생
   * 댓글 삭제 시 전체 댓글 수가 감소되지 않을 경우 에러 발생
 * [동적 MyBatis를 활용한 게시글 검색(BoardMapper.xml)](https://github.com/chch8326/BoardProject/blob/main/src/main/resources/com/choi/board/mapper/BoardMapper.xml?ts=4)
+~~~
+<sql id="criteria">
+    <trim prefix="(" prefixOverrides="OR" suffix=") AND">
+        <foreach item="type" collection="typeArr">
+            <trim prefix="OR">
+                <choose>
+                    <when test="type == 'W'.toString()">
+                        writer LIKE CONCAT('%', #{keyword}, '%')
+                    </when>
+                    <when test="type == 'T'.toString()">
+                        title LIKE CONCAT('%', #{keyword}, '%')
+                    </when>
+                    <when test="type == 'C'.toString()">
+                        content LIKE CONCAT('%', #{keyword}, '%')
+                    </when>
+                </choose>
+            </trim>
+        </foreach>
+    </trim>
+</sql>
+~~~
 
 **3. 댓글 작성 / 수정 / 삭제**
 * [REST 활용(ReplyController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/ReplyController.java?ts=4)
