@@ -22,8 +22,56 @@
 * [Spring Security 설정(SecurityConfig.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/config/SecurityConfig.java?ts=4)
 * 로그인과 회원가입 및 비밀번호 암호화
 * 권한부여를 통한 게시판 기능 제한
+  * id에 admin이 포함되면 ROLE_ADMIN과 ROLE_USER 권한을 모두 부여하고, 포함되지 않으면 ROLE_USER 권한만 부여
   * 권한이 ROLE_ADMIN인 사용자는 모든 게시 글과 댓글을 수정, 삭제가 가능
   * 권한이 ROLE_USER인 사용자는 자신이 쓴 게시 글과 댓글만 수정, 삭제가 가능
+  
+  ~~~
+  한 사용자에게 여러 권한을 부여할 수 있는 1:N 관계 형성
+  <resultMap id="memberMap" type="com.choi.board.security.model.CustomUserDetails">
+      <id property="uid" column="uid" />
+      <result property="uid" column="uid" />
+      <result property="upassword" column="upassword" />
+      <result property="uname" column="uname" />
+      <result property="uemail" column="uemail" />
+      <result property="registerDate" column="registerDate" />
+      <collection property="authList" resultMap="authMap" />
+  </resultMap>
+  
+  <select id="getUserById" resultMap="memberMap">
+      SELECT member.uid,
+             upassword,
+             uname,
+             uemail,
+             registerDate,
+             auth
+      FROM tbl_member as member
+      LEFT OUTER JOIN tbl_member_auth as auth
+      ON member.uid = auth.uid
+      WHERE member.uid = #{uid}
+  </select>
+  ~~~
+  ~~~
+  게시 글 작성자이거나 id에 admin이 포함된 사용자만 게시 글 수정, 삭제가 가능
+  <sec:authentication var="pinfo" property="principal" />
+  <c:set var="isAdmin" value="${pinfo.username}" />
+  <sec:authorize access="isAuthenticated()">
+      <c:if test="${isAdmin == board.writer || fn:contains(isAdmin, 'admin')}">
+          <button class="btn btn-info" data-oper="modify" type="submit">수정</button>&nbsp;&nbsp;&nbsp;	
+          <button class="btn btn-danger" data-oper="delete" type="submit">삭제</button>&nbsp;&nbsp;&nbsp;
+      </c:if>
+  </sec:authorize>
+  
+  댓글 작성자이거나 id에 admin이 포함된 사용자만 댓글 수정, 삭제가 가능
+  if((isAdmin == replyList[i].replyer) || (isAdmin.indexOf("admin") != -1)) {
+      str += "<a href='javascript:void(0);' onClick='replyModify();'>";
+      str += "<small>수정</small>";
+      str += "</a>";
+      str += "<a href='javascript:void(0);' onClick='replyRemove();'>";
+      str += "<small>삭제</small>";
+      str += "</a>";
+  }
+  ~~~
 
 **2. 게시 글 조회 / 작성 / 수정 / 삭제 / 검색**
 * 트랜잭션([게시 글 트랜잭션 적용(BoardServiceImpl.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/service/BoardServiceImpl.java?ts=4), [댓글 트랜잭션 적용(ReplyServiceImpl.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/service/ReplyServiceImpl.java?ts=4))
