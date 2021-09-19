@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choi.board.mapper.ReplyMapper">
+	<select id="getList" resultType="com.choi.board.model.ReplyVO">
+		SELECT *
+		FROM tbl_reply
+		WHERE bno = #{bno} 
+		AND rno > 0
+		ORDER BY rno asc
+		LIMIT #{cri.replyPageStart}, #{cri.amount}
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT count(rno)
+		FROM tbl_reply
+		WHERE bno = #{bno}
+	</select>
+	
+	<insert id="register">
+		INSERT INTO 
+			tbl_reply(
+				bno, 
+				replyer, 
+				reply
+			)
+		VALUES(
+			#{bno}, 
+			#{replyer}, 
+			#{reply}
+		)
+	</insert>
+	
+	<select id="view" resultType="com.choi.board.model.ReplyVO">
+		SELECT *
+		FROM tbl_reply
+		WHERE rno = #{rno}
+	</select>
+	
+	<update id="modify">
+		UPDATE tbl_reply
+		SET reply = #{reply}, 
+			updateDate = now()
+		WHERE rno = #{rno}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tbl_reply
+		WHERE rno = #{rno}
+	</delete>
+	
+	<delete id="deleteAll">
+		DELETE FROM tbl_reply
+		WHERE bno = #{bno}
+	</delete>
+</mapper>

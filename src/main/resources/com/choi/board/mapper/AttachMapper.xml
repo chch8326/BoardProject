@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choi.board.mapper.AttachMapper">
+	<select id="getFile" resultType="com.choi.board.model.AttachVO">
+		SELECT *
+		FROM tbl_attach
+		WHERE bno = #{bno}
+	</select>
+	
+	<insert id="registerFile">
+		INSERT INTO 
+			tbl_attach(
+				uuid, 
+				uploadPath, 
+				fileName, 
+				fileType, 
+				bno
+			)
+		VALUES(
+			#{uuid}, 
+			#{uploadPath}, 
+			#{fileName}, 
+			#{fileType}, 
+			LAST_INSERT_ID()
+		)
+	</insert>
+	
+	<delete id="deleteFile">
+		DELETE FROM tbl_attach
+		WHERE uuid = #{uuid}
+	</delete>
+	
+	<delete id="deleteAllFiles">
+		DELETE FROM tbl_attach
+		WHERE bno = #{bno}
+	</delete>
+</mapper>

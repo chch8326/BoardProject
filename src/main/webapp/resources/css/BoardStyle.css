@@ -1,0 +1,57 @@
+.move {
+	color:black;
+}
+
+.move:hover {
+	color:black;
+}
+
+.download {
+	color:black;
+}
+
+.download:hover {
+	color:black;
+}
+
+.uploadFile ul li button {
+	border:0px;
+	outline:none;
+	box-sizing:none;
+	background-color:transparent;
+	float:right;
+}
+
+.uploadedImage ul {
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+
+.uploadedFile ul {
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+
+.pictureWrapper {
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	margin:auto;
+	z-index:2000;
+	display:none;
+	overflow:auto;
+	position:fixed;
+	max-width:100%;
+	max_height:100%;
+	background:rgba(0,0,0,0.5);
+}
+
+.picture {
+	position:relative;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}

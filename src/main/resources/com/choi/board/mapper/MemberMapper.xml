@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choi.board.mapper.MemberMapper">
+	<resultMap id="memberMap" type="com.choi.board.security.model.CustomUserDetails">
+		<id property="uid" column="uid" />
+		<result property="uid" column="uid" />
+		<result property="upassword" column="upassword" />
+		<result property="uname" column="uname" />
+		<result property="uemail" column="uemail" />
+		<result property="registerDate" column="registerDate" />
+		<collection property="authList" resultMap="authMap" />
+	</resultMap>
+	
+	<resultMap id="authMap" type="com.choi.board.model.AuthVO">
+		<result property="uid" column="uid" />
+		<result property="auth" column="auth" />
+	</resultMap>
+	
+	<select id="getUserById" resultMap="memberMap">
+		SELECT member.uid, 
+			   upassword, 
+			   uname, 
+			   uemail, 
+			   registerDate, 
+			   auth
+		FROM tbl_member as member 
+		LEFT OUTER JOIN tbl_member_auth as auth 
+		ON member.uid = auth.uid
+		WHERE member.uid = #{uid}
+	</select>
+	
+	<insert id="create">
+		INSERT INTO 
+			tbl_member(
+				uid, 
+				upassword, 
+				uname, 
+				uemail
+			)
+		VALUES(
+			#{uid}, 
+			#{upassword}, 
+			#{uname}, 
+			#{uemail}
+		)
+	</insert>
+	
+	<insert id="authSet">
+		INSERT INTO 
+			tbl_member_auth(
+				uid, 
+				auth
+			)
+		VALUES(
+			#{uid}, 
+			#{auth}
+		)
+	</insert>
+</mapper>

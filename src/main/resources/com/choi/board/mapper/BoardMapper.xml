@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choi.board.mapper.BoardMapper">
+	<sql id="criteria">
+		<trim prefix="(" prefixOverrides="OR" suffix=") AND">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'W'.toString()">
+							writer LIKE CONCAT('%', #{keyword}, '%')
+						</when>
+						<when test="type == 'T'.toString()">
+							title LIKE CONCAT('%', #{keyword}, '%')
+						</when>
+						<when test="type == 'C'.toString()">
+							content LIKE CONCAT('%', #{keyword}, '%')	
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<select id="getList" resultType="com.choi.board.model.BoardVO">
+		SELECT *
+		FROM tbl_board
+		WHERE <include refid="criteria" /> bno > 0
+		ORDER BY bno desc, registerDate desc
+		LIMIT #{boardPageStart}, #{amount}
+	</select>
+	
+	<select id="getTotalCount" resultType="long">
+		SELECT count(*)
+		FROM tbl_board
+		WHERE <include refid="criteria" /> bno > 0
+	</select>
+	
+	<select id="view" resultType="com.choi.board.model.BoardVO">
+		SELECT *
+		FROM tbl_board
+		WHERE bno = #{bno}
+	</select>
+	
+	<update id="increase">
+		UPDATE tbl_board
+		SET viewCount = viewCount + 1
+		WHERE bno = #{bno}
+	</update>
+	
+	<insert id="register">
+		INSERT INTO 
+			tbl_board(
+				writer, 
+				title, 
+				content
+			)
+		VALUES(
+			#{writer}, 
+			#{title}, 
+			#{content}
+		)
+	</insert>
+	
+	<update id="modify">
+		UPDATE tbl_board
+		SET title = #{title}, 
+			content = #{content}, 
+			updateDate = now()
+		WHERE bno = #{bno}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tbl_board
+		WHERE bno = #{bno}
+	</delete>
+	
+	<update id="getReplyCount">
+		UPDATE tbl_board
+		SET replyCount = replyCount + #{amount}
+		WHERE bno = #{bno}
+	</update>
+</mapper>	
