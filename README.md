@@ -56,8 +56,8 @@
   <c:set var="isAdmin" value="${pinfo.username}" />
   <sec:authorize access="isAuthenticated()">
       <c:if test="${isAdmin == board.writer || fn:contains(isAdmin, 'admin')}">
-          <button class="btn btn-info" data-oper="modify" type="submit">수정</button>&nbsp;&nbsp;&nbsp;	
-          <button class="btn btn-danger" data-oper="delete" type="submit">삭제</button>&nbsp;&nbsp;&nbsp;
+          <button class="btn btn-info" data-oper="modify" type="submit">수정</button>	
+          <button class="btn btn-danger" data-oper="delete" type="submit">삭제</button>
       </c:if>
   </sec:authorize>
   
