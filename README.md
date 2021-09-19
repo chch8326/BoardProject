@@ -80,67 +80,10 @@
   * 댓글 작성 시 전체 댓글 수가 증가되지 않을 경우 에러 발생
   * 댓글 삭제 시 전체 댓글 수가 감소되지 않을 경우 에러 발생
 * [동적 MyBatis를 활용한 게시글 검색(BoardMapper.xml)](https://github.com/chch8326/BoardProject/blob/main/src/main/resources/com/choi/board/mapper/BoardMapper.xml?ts=4)
-~~~
-<sql id="criteria">
-    <trim prefix="(" prefixOverrides="OR" suffix=") AND">
-        <foreach item="type" collection="typeArr">
-            <trim prefix="OR">
-                <choose>
-                    <when test="type == 'W'.toString()">
-                        writer LIKE CONCAT('%', #{keyword}, '%')
-                    </when>
-                    <when test="type == 'T'.toString()">
-                        title LIKE CONCAT('%', #{keyword}, '%')
-                    </when>
-                    <when test="type == 'C'.toString()">
-                        content LIKE CONCAT('%', #{keyword}, '%')
-                    </when>
-                </choose>
-            </trim>
-        </foreach>
-    </trim>
-</sql>
-~~~
 
 **3. 댓글 작성 / 수정 / 삭제**
 * [REST 활용(ReplyController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/ReplyController.java?ts=4)
 * [모듈 패턴과 Ajax를 활용한 댓글 처리(reply.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/reply.js?ts=4)
-~~~
-var replyService = (function() {
-    // 댓글 출력
-    function getReplyList(param, callback, error) {
-        var bno = param.bno;
-        var page = param.page || 1;
-        
-        $.getJSON("/replies/" + bno + "/" + page + ".json", function(data) {
-            if(callback) callback(data.replyCount, data.replyList);
-        }).fail(function(xhr, status, err) {
-            if(error) error(err);
-        });
-    }
-    
-    // 댓글 작성
-    function register(reply, callback, error) {
-        $.ajax({
-            type: "post",
-            url: "/replies/new",
-            data: JSON.stringify(reply),
-            contentType: "application/json; charset=utf-8",
-            success: function(result, status, xhr) {
-                if(callback) callback(result); 
-            },
-            error: function(xhr, status, err) {
-                if(error) error(err);
-            }
-        });
-    }
-    
-    return {
-        getReplyList : getReplyList,
-        register : register, 
-    };
-})();
-~~~
 * 댓글 더 보기를 활용한 페이징 처리
   * 댓글의 개수가 한 페이지에 5개가 되면 더 보기 버튼을 출력
   * 댓글의 개수가 한 페이지에 5개 미만이거나 댓글의 현재 페이지가 마지막 페이지가 되면 더 보기 버튼을 제거  
