@@ -85,7 +85,7 @@
 **3. 댓글 작성 / 수정 / 삭제**
 * [REST 활용(ReplyController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/ReplyController.java?ts=4)
 * [모듈 패턴과 Ajax를 활용한 댓글 처리(reply.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/reply.js?ts=4)
-* [댓글 더 보기를 활용한 페이징 처리(view.jsp)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/WEB-INF/views/board/view.jsp?ts=4)
+* [댓글 더 보기를 활용한 페이징 처리(view.jsp 291줄 ~ 362줄)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/WEB-INF/views/board/view.jsp?ts=4)
   * 댓글의 개수가 한 페이지에 5개가 되면 더 보기 버튼을 출력
   * 댓글의 개수가 한 페이지에 5개 미만이거나 댓글의 현재 페이지가 마지막 페이지가 되면 더 보기 버튼을 제거  
   * 댓글 작성 시 현재 페이지가 마지막 페이지일 경우 맨 뒤에 작성한 댓글을 출력
