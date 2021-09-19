@@ -73,6 +73,7 @@
   ~~~
 
 **2. 게시 글 조회 / 작성 / 수정 / 삭제 / 검색**
+* [게시 글 처리(BoardController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/BoardController.java?ts=4)
 * 트랜잭션([게시 글 트랜잭션 적용(BoardServiceImpl.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/service/BoardServiceImpl.java?ts=4), [댓글 트랜잭션 적용(ReplyServiceImpl.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/service/ReplyServiceImpl.java?ts=4))
   * 게시 글 작성 시 파일이 다 업로드 되지 않을 경우 에러 발생
   * 게시 글 수정 시 파일이 다 업로드 되지 않을 경우 에러 발생
