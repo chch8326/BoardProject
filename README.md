@@ -51,7 +51,25 @@
   </select>
   ~~~
   ~~~
-  게시 글 작성자이거나 id에 admin이 포함된 사용자만 게시 글 수정, 삭제가 가능
+  인증이 되어야 즉, 로그인을 해야 게시 글 작성 페이지로 이동이 가능
+  @PreAuthorize("isAuthenticated()")
+  @GetMapping("/register")
+  public void articleRegisterController() {}
+  
+  댓글 작성자이거나 ROLE_ADMIN 권한을 가진 사용자만 댓글 수정이 가능
+  @PreAuthorize("(principal.username == #reply.replyer) or hasRole('ROLE_ADMIN')")
+  @RequestMapping(value = "/{rno}",
+                  method = { RequestMethod.PUT, RequestMethod.PATCH },
+                  consumes = "application/json")
+  public ResponseEntity<String> replyModifyController(@RequestBody ReplyVO reply, @PathVariable("rno") Long rno) {
+      reply.setRno(rno);
+      return replyService.replyModify(reply) == 1 ?
+              new ResponseEntity<String>("success", HttpStatus.OK) :
+              new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+  ~~~
+  ~~~
+  게시 글 작성자이거나 id에 admin이 포함된 사용자만 게시 글 수정, 삭제 버튼을 출력
   <sec:authentication var="pinfo" property="principal" />
   <c:set var="isAdmin" value="${pinfo.username}" />
   <sec:authorize access="isAuthenticated()">
@@ -61,7 +79,7 @@
       </c:if>
   </sec:authorize>
   
-  댓글 작성자이거나 id에 admin이 포함된 사용자만 댓글 수정, 삭제가 가능
+  댓글 작성자이거나 id에 admin이 포함된 사용자만 댓글 수정, 삭제 버튼을 출력
   if((isAdmin == replyList[i].replyer) || (isAdmin.indexOf("admin") != -1)) {
       str += "<a href='javascript:void(0);' onClick='replyModify();'>";
       str += "<small>수정</small>";
