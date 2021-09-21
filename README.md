@@ -110,10 +110,6 @@
   * 댓글 출력 / 작성 / 조회 / 삭제 함수 모듈화, 캡슐화
   * 댓글 작성 시간 출력 함수 모듈화, 캡슐화
 * [댓글 더 보기를 활용한 페이징 처리(view.jsp 291줄 ~ 362줄)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/WEB-INF/views/board/view.jsp?ts=4)
-  * 댓글의 개수가 한 페이지에 5개가 되면 더 보기 버튼을 출력
-  * 댓글의 개수가 한 페이지에 5개 미만이거나 댓글의 현재 페이지가 마지막 페이지가 되면 더 보기 버튼을 제거  
-  * 댓글 작성 시 현재 페이지가 마지막 페이지일 경우 맨 뒤에 작성한 댓글을 출력
-  * 댓글 작성 시 현재 페이지가 마지막 페이지가 아닐 경우 마지막 페이지까지 댓글을 모두 출력하고 그 뒤에 작성한 댓글을 출력
 
 **4. 파일 업로드 / 다운로드 / 수정 / 삭제**
 * [REST 활용(UploadController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/UploadController.java?ts=4)
