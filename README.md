@@ -2,6 +2,8 @@
 
 > Spring MVC, Spring Security와 REST를 활용한 게시판입니다.
 
+<img src="https://user-images.githubusercontent.com/42902371/134123875-29998653-795a-4a1f-9501-058f14f18d45.PNG" width="700" height="400">
+
 ### 전략 패턴
 > 전략 패턴을 활용하여 결합도를 낮추고, 응집도를 높였으며, 불필요한 코드의 변경은 줄고, 관심사의 기능은 자유롭게 확장, 변경할 수 있어 개방-페쇄의 원칙을 준수하도록 했습니다.
 
