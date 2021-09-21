@@ -104,14 +104,14 @@
   * 댓글 삭제 시 전체 댓글 수가 감소되지 않을 경우 에러 발생
 * [동적 MyBatis를 활용한 게시글 검색(BoardMapper.xml)](https://github.com/chch8326/BoardProject/blob/main/src/main/resources/com/choi/board/mapper/BoardMapper.xml?ts=4)
 
-**3. 댓글 작성 / 수정 / 삭제**
-* [REST 활용(ReplyController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/ReplyController.java?ts=4)
-* [모듈 패턴과 Ajax를 활용한 댓글 처리(reply.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/reply.js?ts=4)
+**3. Ajax를 활용한 댓글 작성 / 수정 / 삭제**
+* [REST를 활용한 댓글 처리(ReplyController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/ReplyController.java?ts=4)
+* [모듈 패턴을 통한 모듈화, 캡슐화(reply.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/reply.js?ts=4)
   * 댓글 출력 / 작성 / 조회 / 삭제 함수 모듈화, 캡슐화
   * 댓글 작성 시간 출력 함수 모듈화, 캡슐화
 * [댓글 더 보기를 활용한 페이징 처리(view.jsp 291줄 ~ 362줄)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/WEB-INF/views/board/view.jsp?ts=4)
 
-**4. 파일 업로드 / 다운로드 / 수정 / 삭제**
-* [REST 활용(UploadController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/UploadController.java?ts=4)
-* [모듈 패턴과 Ajax를 활용한 파일 처리(upload.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/upload.js?ts=4)
+**4. Ajax를 활용한 파일 업로드 / 다운로드 / 수정 / 삭제**
+* [REST를 활용한 파일 처리(UploadController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/UploadController.java?ts=4)
+* [모듈 패턴을 한 모듈화, 캡슐화(upload.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/upload.js?ts=4)
   * 파일 업로드 / 출력 / 삭제 함수 모듈화, 캡슐화
