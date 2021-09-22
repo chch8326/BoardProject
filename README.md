@@ -97,15 +97,20 @@
 **2. 게시 글 조회 / 작성 / 수정 / 삭제 / 검색**
 * [게시 글 처리(BoardController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/BoardController.java?ts=4)
 * 트랜잭션 적용([게시 글 트랜잭션 적용(BoardServiceImpl.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/service/BoardServiceImpl.java?ts=4), [댓글 트랜잭션 적용(ReplyServiceImpl.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/service/ReplyServiceImpl.java?ts=4))
-  * 게시 글 작성 시 파일이 다 업로드 되지 않을 경우 에러 발생
-  * 게시 글 수정 시 파일이 다 업로드 되지 않을 경우 에러 발생
-  * 게시 글 삭제 시 댓글과 파일이 다 삭제되지 않을 경우 에러 발생
-  * 댓글 작성 시 전체 댓글 수가 증가되지 않을 경우 에러 발생
-  * 댓글 삭제 시 전체 댓글 수가 감소되지 않을 경우 에러 발생
+  * 게시 글 작성 시 파일이 다 업로드 되지 않을 경우 게시 글 작성이 되지 않도록 함
+  * 게시 글 수정 시 파일이 다 업로드 되지 않을 경우 게시 글 작성이 되지 않도록 함
+  * 게시 글 삭제 시 댓글과 파일이 다 삭제되지 않을 경우 게시 글 삭제가 되지 않도록 함
+  * 댓글 작성 시 전체 댓글 수가 증가되지 않을 경우 댓글 작성이 되지 않도록 함
+  * 댓글 삭제 시 전체 댓글 수가 감소되지 않을 경우 댓글 작성이 되지 않도록 함
 * [동적 MyBatis를 활용한 게시글 검색(BoardMapper.xml)](https://github.com/chch8326/BoardProject/blob/main/src/main/resources/com/choi/board/mapper/BoardMapper.xml?ts=4)
 
 **3. Ajax를 활용한 댓글 작성 / 수정 / 삭제**
 * [REST를 활용한 댓글 처리(ReplyController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/ReplyController.java?ts=4)
+  * 댓글 출력: URI는 /replies/{bno}/{page} 로 댓글이 작성된 게시 글 번호 자원과 댓글 페이지 자원으로 댓글을 조회하므로 GET method를 사용
+  * 댓글 작성: URI는 /replies/new 로 댓글이 생성되는 것이므로 자원을 생성하는 POST method를 사용
+  * 댓글 조회: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 조회하므로 GET method를 사용
+  * 댓글 수정: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 수정하므로 자원을 업데이트하는 PUT method를 사용
+  * 댓글 삭제: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 삭제하므로 자원을 삭제하는 DELETE method를 
 * [모듈 패턴을 통한 모듈화, 캡슐화(reply.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/reply.js?ts=4)
   * 댓글 출력 / 작성 / 조회 / 삭제 함수 모듈화, 캡슐화
   * 댓글 작성 시간 출력 함수 모듈화, 캡슐화
