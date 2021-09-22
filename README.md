@@ -1,4 +1,4 @@
-# 반응형 게시판
+# 게시판
 
 > Spring MVC, Spring Security와 REST를 활용한 게시판입니다.
 
