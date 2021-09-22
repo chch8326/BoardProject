@@ -106,7 +106,7 @@
 
 **3. Ajax를 활용한 댓글 작성 / 수정 / 삭제**
 * [REST를 활용한 댓글 처리(ReplyController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/ReplyController.java?ts=4)
-  * 댓글 출력: URI는 /replies/{bno}/{page} 로 댓글이 작성된 게시 글 번호 자원과 댓글 페이지 자원으로 댓글을 조회하므로 GET method를 사용
+  * 댓글 출력: URI는 /replies/{bno}/{page} 로 댓글이 작성된 게시 글 번호와 댓글 페이지로 댓글을 조회하므로 GET method를 사용
   * 댓글 작성: URI는 /replies/new 로 댓글이 생성되는 것이므로 자원을 생성하는 POST method를 사용
   * 댓글 조회: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 조회하므로 GET method를 사용
   * 댓글 수정: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 수정하므로 자원을 업데이트하는 PUT method를 사용
