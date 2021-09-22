@@ -104,7 +104,7 @@
   * 댓글 삭제 시 전체 댓글 수가 감소되지 않을 경우 댓글 작성이 되지 않도록 함
 * [동적 MyBatis를 활용한 게시글 검색(BoardMapper.xml)](https://github.com/chch8326/BoardProject/blob/main/src/main/resources/com/choi/board/mapper/BoardMapper.xml?ts=4)
 
-**3. Ajax를 활용한 댓글 작성 / 수정 / 삭제**
+**3. Ajax를 활용한 댓글 출력 / 작성 / 수정 / 삭제**
 * [REST를 활용한 댓글 처리(ReplyController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/ReplyController.java?ts=4)
   * 댓글 출력: URI는 /replies/{bno}/{page} 로 댓글이 작성된 게시 글 번호와 댓글 페이지로 댓글을 조회하므로 GET method를 사용
   * 댓글 작성: URI는 /replies/new 로 댓글이 생성되는 것이므로 자원을 생성하는 POST method를 사용
