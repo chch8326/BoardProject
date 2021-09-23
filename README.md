@@ -110,7 +110,7 @@
   * 댓글 작성: URI는 /replies/new 로 댓글이 생성되는 것이므로 POST method를 사용
   * 댓글 조회: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 조회하므로 GET method를 사용
   * 댓글 수정: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 수정하므로 자원을 업데이트하는 PUT method를 사용
-  * 댓글 삭제: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 삭제하므로 자원을 삭제하는 DELETE method를 
+  * 댓글 삭제: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 삭제하므로 자원을 삭제하는 DELETE method를 사용
 * [모듈 패턴을 통한 모듈화, 캡슐화(reply.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/reply.js?ts=4)
   * 댓글 출력 / 작성 / 조회 / 삭제 함수 모듈화, 캡슐화
   * 댓글 작성 시간 출력 함수 모듈화, 캡슐화
