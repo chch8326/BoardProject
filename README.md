@@ -112,8 +112,6 @@
   * 댓글 수정: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 수정하므로 자원을 업데이트하는 PUT method를 사용
   * 댓글 삭제: URI는 /replies/{rno} 로 게시 글에 작성된 한 댓글을 삭제하므로 자원을 삭제하는 DELETE method를 사용
 * [모듈 패턴을 통한 모듈화, 캡슐화(reply.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/reply.js?ts=4)
-  * 댓글 출력 / 작성 / 조회 / 삭제 함수 모듈화, 캡슐화
-  * 댓글 작성 시간 출력 함수 모듈화, 캡슐화
 * [댓글 더 보기를 활용한 페이징 처리(view.jsp 291줄 ~ 362줄)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/WEB-INF/views/board/view.jsp?ts=4)
 
 **4. Ajax를 활용한 파일 출력 / 업로드 / 다운로드 / 수정 / 삭제**
@@ -121,5 +119,4 @@
   * 파일 출력: URI는 /board/getAttachFile 로 게시 글에 등록된 파일들을 조회하는 것이므로 GET method를 사용
   * 파일 업로드: URI는 /fileUpload 로 파일이 생성되는 것이므로 POST method를 사용
   * 파일 저장소와 DB에서 파일 삭제: POST method를 사용
-* [모듈 패턴을 한 모듈화, 캡슐화(upload.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/upload.js?ts=4)
-  * 파일 업로드 / 출력 / 삭제 함수 모듈화, 캡슐화
+* [모듈 패턴을 통한 모듈화, 캡슐화(upload.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/upload.js?ts=4)
