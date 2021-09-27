@@ -121,7 +121,7 @@
 
 **4. Ajax를 활용한 파일 출력 / 업로드 / 다운로드 / 수정 / 삭제**
 * [REST를 활용한 파일 처리(UploadController.java)](https://github.com/chch8326/BoardProject/blob/main/src/main/java/com/choi/board/controller/UploadController.java?ts=4)
-  * 파일 출력: URI는 /board/getAttachFile GET method 사용
-  * 파일 업로드: URI는 /fileUpload POST method 사용
-  * 파일 저장소와 DB에서 파일 삭제: POST method 사용
+  * 파일 출력: URI는 /board/getAttachFile 로 GET method 사용
+  * 파일 업로드: URI는 /fileUpload 로 POST method 사용
+  * 파일 저장소와 DB에서 파일 삭제: URI는 /fileInRepositoryRemove, /fileDelete 로 POST method 사용
 * [모듈 패턴을 통한 모듈화, 캡슐화(upload.js)](https://github.com/chch8326/BoardProject/blob/main/src/main/webapp/resources/js/upload.js?ts=4)
