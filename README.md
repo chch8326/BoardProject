@@ -2,6 +2,18 @@
 
 > Spring MVC, Spring Security와 REST를 활용한 게시판입니다.
 
+~~~
+대용량 페이징 처리
+
+SELECT bno, title, content
+FROM(
+    SELECT /*+INDEX_DESC(tbl_board pk_board) */ rownum rn, bno, title, content
+    FROM tbl_board
+    WHERE rownum <= 10
+)
+WHERE rn > 0;
+~~~
+
 <img src="https://user-images.githubusercontent.com/42902371/134123875-29998653-795a-4a1f-9501-058f14f18d45.PNG" width="700" height="400">
 <img src="https://user-images.githubusercontent.com/42902371/134125221-1fba5ebb-caa1-4842-a13c-868dd22cf56f.png" width="700" height="450">
 <img src="https://user-images.githubusercontent.com/42902371/134125961-fc85f5ec-f034-4888-a88e-df8d2ae28dcf.png" width="700" height="450">
